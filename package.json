@@ -24,6 +24,7 @@
   "homepage": "https://github.com/nodech/bmutex-log#readme",
   "dependencies": {
     "blgr": "^0.1.8",
-    "bmutex": "^0.1.6"
+    "bmutex": "^0.1.6",
+    "bsert": "^0.0.10"
   }
 }
