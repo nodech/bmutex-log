@@ -1,6 +1,6 @@
 {
   "name": "bmutex-log",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Add logs to lock.",
   "main": "lib/bmutex-log.js",
   "scripts": {
