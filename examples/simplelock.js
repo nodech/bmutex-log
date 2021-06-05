@@ -1,8 +1,6 @@
 'use strict';
 
-const Logger = require('blgr');
 const {Lock, MapLock} = require('bmutex');
-const {LockLogger} = require('../lib/bmutex-log');
 
 class TestClass {
   constructor() {
@@ -25,15 +23,10 @@ class TestClass {
   }
 }
 
-const logger = new Logger({ console: true });
-const lockLogger = new LockLogger({ logger });
-const test1 = new TestClass();
-
-lockLogger.hijack(test1);
-
 (async () => {
-  await logger.open();
-  logger.setLevel('spam');
+  const test1 = new TestClass();
+
+  require('../lib/bmutex-log').hijack(test1);
 
   test1.doWork1().then(() => {
     console.log('done.');
@@ -43,7 +36,6 @@ lockLogger.hijack(test1);
     test1.doWork1();
 
   await test1.doWork1();
-  await logger.close();
 })().catch((e) => {
   console.error(e);
 });
