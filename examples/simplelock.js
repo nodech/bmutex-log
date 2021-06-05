@@ -39,9 +39,10 @@ lockLogger.hijack(test1);
     console.log('done.');
   });
 
-  for (let i = 0; i < 1; i++)
-    await test1.doWork1();
+  for (let i = 0; i < 3; i++)
+    test1.doWork1();
 
+  await test1.doWork1();
   await logger.close();
 })().catch((e) => {
   console.error(e);
