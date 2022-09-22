@@ -1,11 +1,11 @@
 'use strict';
 
-const {Lock, MapLock} = require('bmutex');
+const {Lock} = require('bmutex');
+const BmutexLock = require('../lib/bmutex-log');
 
 class TestClass {
   constructor() {
     this.normalLock = new Lock();
-    this.mapLock = new MapLock();
   }
 
   async doWork1() {
@@ -26,7 +26,10 @@ class TestClass {
 (async () => {
   const test1 = new TestClass();
 
-  require('../lib/bmutex-log').hijack(test1);
+  BmutexLock.Lock = Lock;
+  BmutexLock.hijack(test1, {
+    objName: 'test1'
+  });
 
   test1.doWork1().then(() => {
     console.log('done.');
